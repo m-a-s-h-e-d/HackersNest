@@ -17,6 +17,9 @@ namespace Game
 		virtual void OnAddToWorld() override;
 
 	private:
+		/// <summary>
+		///  used for animation
+		/// </summary>
 		float m_flyTimerDt;
 		float m_flyTimerMaxTime;
 

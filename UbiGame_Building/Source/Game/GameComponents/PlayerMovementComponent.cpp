@@ -5,6 +5,7 @@
 
 #include "GameEngine/Util/TextureManager.h"
 #include "GameEngine/Util/AnimationManager.h"
+#include "GameEngine/Util/ConfigurationManager.h"
 
 #include "Game/GameComponents/PlayerSoundComponent.h"
 
@@ -59,30 +60,34 @@ void PlayerMovementComponent::Update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		wantedVel.y -= playerVel * dt;
-		if (m_playerSoundComponent)
-		{
-			m_playerSoundComponent->RequestSound(true);
-		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		wantedVel.y += playerVel * dt;
-		if (m_playerSoundComponent)
-		{
-			m_playerSoundComponent->RequestSound(false);
-		}
 	}
 
-	GetEntity()->SetPos(GetEntity()->GetPos() + wantedVel);
+	auto cfgMgr = GameEngine::ConfigurationManager::GetInstance();
+	
+	auto newPos = GetEntity()->GetPos() + wantedVel;
 
-	if (wantedVel != sf::Vector2f(0.f, 0.f))
+	if (newPos.y < 0)
 	{
-		m_flyTimerDt = m_flyTimerMaxTime;
+		newPos.y = 0;
 	}
-	else
+	if (newPos.y > cfgMgr->GetWindowSize()->y)
 	{
-		m_flyTimerDt -= dt;
+		newPos.y = cfgMgr->GetWindowSize()->y;
 	}
+	if (newPos.x < 0)
+	{
+		newPos.x = 0;
+	}
+	if (newPos.x > cfgMgr->GetWindowSize()->x)
+	{
+		newPos.x = cfgMgr->GetWindowSize()->x;
+	}
+
+	GetEntity()->SetPos(newPos);
 
 	if (m_animComponent)
 	{
