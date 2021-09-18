@@ -34,11 +34,6 @@ GameBoard::GameBoard()
 	m_text->SetLocalRotOffset(90.f);
 
 	CreateBackGround();
-	//Debug
-	for (int a = 0; a < 3; ++a)
-	{
-		//SpawnNewRandomObstacles();
-	}
 }
 
 
@@ -56,77 +51,60 @@ void GameBoard::Update()
 		m_lastObstacleSpawnTimer -= dt;
 		if (m_lastObstacleSpawnTimer <= 0.f)
 		{
-			//SpawnNewRandomObstacles();
-			SpawnNewRandomTiledObstacles();
+			SpawnNewRandomObstacles();
+			//SpawnNewRandomTiledObstacles();
 		}
 
-		UpdateObstacles(dt);
+		UpdateCheckGameOver();
 		UpdateBackGround();
 		UpdatePlayerDying();
-	}		
-}
-
-
-void GameBoard::UpdateObstacles(float dt)
-{
-	static float obstacleSpeed = 100.f;
-
-	std::vector<GameEngine::Entity*> obstacles = GameEngine::GameEngineMain::GetInstance()->GetEntitiesByTag("Obstacle");
-	
-	for (auto it = obstacles.begin(); it != obstacles.end(); ++it)
+	}
+	else
 	{
-		GameEngine::Entity* obstacle = (*it);
-		sf::Vector2f currPos = obstacle->GetPos();
-		currPos.x -= obstacleSpeed * dt;
-		obstacle->SetPos(currPos);
-		//If we are to remove ourselves
-		if (currPos.x < -50.f)
-		{
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
-		}
+		// Update game over screen and stuff.
+		// Will most likely need to destroy all other entities (no memory leak pls)
 	}
 }
 
 
-void GameBoard::UpdatePlayerDying()
-{	
-	bool noGameOver = GameEngine::CameraManager::IsFollowCameraEnabled();
+void GameBoard::UpdateCheckGameOver()
+{
+	const static int obstacle_max = 7;
 
-	if (noGameOver)
-		return;
-
-	static float xToPlayerDie = 0.f;
-	if (m_player->GetPos().x < xToPlayerDie)
+	if (std::vector<GameEngine::Entity*> obstacles = GameEngine::GameEngineMain::GetInstance()->GetEntitiesByTag("Obstacle"); obstacles.size() >= obstacle_max)
 	{
 		m_isGameOver = true;
 	}
 }
 
 
+void GameBoard::UpdatePlayerDying()
+{
+	// Player should not die
+}
+
 void GameBoard::SpawnNewRandomObstacles()
 {
-	static float minNextSpawnTime = 0.3f;
-	static float maxNextSpawnTime = 0.7f;
+	static float minNextSpawnTime = 3.0f;
+	static float maxNextSpawnTime = 5.0f;
 
-	static float minObstacleXPos = 50.f;
-	static float maxObstacleXPos = 450.f;
-	static float minObstacleYPos = 20.f;
-	static float maxObstacleYPos = 450.f;
-	
-	static float minObstacleHeight = 50.f;
-	static float maxObstacleHeight = 170.f;
-	static float minObstacleWidth = 20.f;
-	static float maxObstacleWidth = 40.f;
+	static float minObstacleXPos = 70.f;
+	static float maxObstacleXPos = 430.f;
+	static float minObstacleYPos = 50.f;
+	static float maxObstacleYPos = 700.f;
+
+	static float obstacleHeight = 96.f;
+	static float obstacleWidth = 128.f;
 
 	sf::Vector2f pos = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
-	sf::Vector2f size = sf::Vector2f(RandomFloatRange(minObstacleWidth, maxObstacleWidth), RandomFloatRange(minObstacleHeight, maxObstacleHeight));
+	sf::Vector2f size = sf::Vector2f(obstacleWidth, obstacleHeight);
 
 	SpawnNewObstacle(pos, size);
 
 	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
 }
 
-
+// We will not use this
 void GameBoard::SpawnNewRandomTiledObstacles()
 {
 	static int minObstacleCount = 2;

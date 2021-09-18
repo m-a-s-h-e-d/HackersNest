@@ -17,7 +17,7 @@ namespace Game
 
 		//Temp - for nice architecture this should be within some sort of IUpdatable interface that GameEngine handles (so that not only entities can be updated)
 		void Update();
-		void UpdateObstacles(float dt);
+		void UpdateCheckGameOver();
 		void UpdatePlayerDying();
 		void SpawnNewRandomObstacles();
 		void SpawnNewRandomTiledObstacles();

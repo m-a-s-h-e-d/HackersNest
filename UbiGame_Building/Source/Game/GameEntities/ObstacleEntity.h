@@ -14,7 +14,11 @@ namespace Game
 		virtual void OnAddToWorld() override;
 		virtual void OnRemoveFromWorld() override;
 
+		float getTimer() const;
+
 	protected:
+		float		m_timer;
+		
 		GameEngine::SpriteRenderComponent* m_renderComponent;		
 	};
 }
