@@ -160,6 +160,11 @@ void GameBoard::UpdateBackGround()
 	if (!m_backGround || !m_player)
 		return;
 
+	if (m_isGameOver)
+	{
+		// Update the background sprite to the game over screen on game over
+	}
+
 	if (!GameEngine::CameraManager::IsFollowCameraEnabled())
 		return;
 
