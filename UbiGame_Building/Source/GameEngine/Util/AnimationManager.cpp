@@ -38,6 +38,16 @@ void AnimationManager::InitStaticGameAnimations()
 			2,
 			6)
 	);
+
+	m_animDefinitions.push_back
+	(
+		SAnimationDefinition(
+			EAnimationId::BrickRepair,
+			eTexture::Tileset,
+			sf::Vector2i(0, 0),
+			5,
+			1)
+	);
 }
 
 

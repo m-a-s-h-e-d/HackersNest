@@ -64,6 +64,12 @@ void PlayerMovementComponent::Update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		m_isBuilding = true;
+
+		bool is_repairing = true; // Default to true for debug
+		if (m_playerSoundComponent && is_repairing)
+		{
+			m_playerSoundComponent->RequestSound();
+		}
 	}
 	else
 	{

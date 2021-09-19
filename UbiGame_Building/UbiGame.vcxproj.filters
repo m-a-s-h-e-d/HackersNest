@@ -191,4 +191,7 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\Downloads\music_loop.mp3" />
+  </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #pragma once
 #include "GameEngine/EntitySystem/Entity.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
+#include "GameEngine/EntitySystem/Components/AnimationComponent.h"
 
 namespace Game
 {
@@ -19,7 +20,8 @@ namespace Game
 	protected:
 		float		m_timer;
 		
-		GameEngine::SpriteRenderComponent* m_renderComponent;		
+		GameEngine::SpriteRenderComponent* m_renderComponent;
+		GameEngine::AnimationComponent* m_animComponent;
 	};
 }
 

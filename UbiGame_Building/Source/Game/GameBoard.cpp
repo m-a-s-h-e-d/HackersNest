@@ -52,7 +52,6 @@ void GameBoard::Update()
 		if (m_lastObstacleSpawnTimer <= 0.f)
 		{
 			SpawnNewRandomObstacles();
-			//SpawnNewRandomTiledObstacles();
 		}
 
 		UpdateCheckGameOver();

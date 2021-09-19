@@ -2,6 +2,7 @@
 
 #include "GameEngine/EntitySystem/Components/CollidableComponent.h"
 #include "GameEngine/EntitySystem/Components/ButtonComponent.h"
+#include "GameEngine/Util/AnimationManager.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -15,7 +16,9 @@ ObstacleEntity::ObstacleEntity()
 	m_renderComponent->SetZLevel(2);
 	m_renderComponent->SetTileIndex(0, 0);
 
-	// AddComponent<GameEngine::CollidableComponent>();
+	//Animation
+	m_animComponent = AddComponent<GameEngine::AnimationComponent>();
+	
 	AddComponent<GameEngine::ButtonComponent>();
 
 	SetEntityTag("Obstacle");
@@ -31,6 +34,11 @@ ObstacleEntity::~ObstacleEntity()
 void ObstacleEntity::OnAddToWorld()
 {
 	Entity::OnAddToWorld();
+	
+	if (m_animComponent)
+	{
+		m_animComponent->PlayAnim(GameEngine::EAnimationId::BrickRepair);
+	}
 }
 
 

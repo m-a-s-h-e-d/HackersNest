@@ -13,6 +13,7 @@ namespace GameEngine
 		{
 			PlayerIdle,
 			PlayerHammer,
+			BrickRepair,
 			None,
 		};
 	}

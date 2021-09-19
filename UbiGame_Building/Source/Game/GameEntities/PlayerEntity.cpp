@@ -4,7 +4,6 @@
 #include "Game/GameComponents/PlayerCameraComponent.h"
 
 #include "GameEngine/EntitySystem/Components/CollidablePhysicsComponent.h"
-#include "GameEngine/EntitySystem/Components/ParticleEmitterComponent.h"
 #include "GameEngine/EntitySystem/Components/SoundComponent.h"
 #include "GameEngine/Util/AnimationManager.h"
 
@@ -26,12 +25,11 @@ PlayerEntity::PlayerEntity()
 	//Collisions
 	AddComponent<GameEngine::CollidablePhysicsComponent>();
 
-
 	//Sound
 	GameEngine::SoundComponent* const soundComponent = AddComponent<GameEngine::SoundComponent>();
 	soundComponent->SetNumSimultaneousSounds(2); // Hard coded 5 simultaneous sounds for the player
 												 
-	AddComponent<PlayerSoundComponent>();
+	m_playerSoundComponent = AddComponent<PlayerSoundComponent>();
 
 	//Camera control
 	AddComponent<PlayerCameraComponent>();
@@ -48,11 +46,13 @@ void PlayerEntity::OnAddToWorld()
 {
 	Entity::OnAddToWorld();
 
+	m_playerSoundComponent->PlayMusicLoop();
+
 	if (m_animComponent)
 	{
 		m_animComponent->PlayAnim(GameEngine::EAnimationId::PlayerIdle);
 	}
-
+	
 	SetEntityTag("Player");
 }
 
