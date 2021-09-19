@@ -71,27 +71,34 @@ void PlayerMovementComponent::Update()
 	}
 
 	auto cfgMgr = GameEngine::ConfigurationManager::GetInstance();
+
+	auto liftEntity = GameEngine::GameEngineMain::GetInstance()->GetEntitiesByTag("Lift")[0];
 	
 	auto newPos = GetEntity()->GetPos() + wantedVel;
 
-	if (newPos.y < 0)
+	if (newPos.y < 50)
 	{
-		newPos.y = 0;
+		newPos.y = 50;
 	}
-	if (newPos.y > cfgMgr->GetWindowSize()->y)
+	if (newPos.y > cfgMgr->GetWindowSize()->y - 50)
 	{
-		newPos.y = cfgMgr->GetWindowSize()->y;
+		newPos.y = cfgMgr->GetWindowSize()->y - 50;
 	}
-	if (newPos.x < 0)
+	if (newPos.x < 50)
 	{
-		newPos.x = 0;
+		newPos.x = 50;
 	}
-	if (newPos.x > cfgMgr->GetWindowSize()->x)
+	if (newPos.x > cfgMgr->GetWindowSize()->x - 50)
 	{
-		newPos.x = cfgMgr->GetWindowSize()->x;
+		newPos.x = cfgMgr->GetWindowSize()->x - 50;
 	}
 
+	auto newLiftPos = newPos;
+	newLiftPos.x += 45;
+	newLiftPos.y -= 650;
+
 	GetEntity()->SetPos(newPos);
+	liftEntity->SetPos(newLiftPos);
 
 	if (m_animComponent)
 	{

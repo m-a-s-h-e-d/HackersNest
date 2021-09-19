@@ -7,32 +7,31 @@
 #include "GameEngine/Util/CameraManager.h"
 #include "Game/GameEntities/PlayerEntity.h"
 #include "Game/GameEntities/ObstacleEntity.h"
+#include "GameEntities/LiftEntity.h"
 
 using namespace Game;
 
 GameBoard::GameBoard()
 	: m_player(nullptr)
+	, m_lift(nullptr)
+	, m_text(nullptr)
 	, m_backGround(nullptr)
 	, m_lastObstacleSpawnTimer(0.f)
 	, m_isGameOver(false)
 {
-	m_player = new PlayerEntity();
-	
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
-	m_player->SetPos(sf::Vector2f(150.f, 700.f));	
-	m_player->SetSize(sf::Vector2f(64.f, 64.f));
-	
-	m_text = new GameEngine::Entity();
+	m_lift = new LiftEntity();
 
-    /**
-	    GameEngine::GameEngineMain::GetInstance()->AddEntity(m_text);
-		m_text->SetParent(m_player);
-	    GameEngine::TextRenderComponent* textRenderComponent = m_text->AddComponent<GameEngine::TextRenderComponent>();
-	    textRenderComponent->SetFont("arial.ttf");
-		textRenderComponent->SetString("Player");
-		textRenderComponent->SetZLevel(3);
-		m_text->SetLocalPosOffset(sf::Vector2f(1.f, 1.f));
-	*/
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_lift);
+
+	m_lift->SetSize(sf::Vector2f(172.f, 1400.f));
+	m_lift->SetPos(sf::Vector2f(195.f, 0.f));
+	
+	m_player = new PlayerEntity();
+
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
+
+	m_player->SetPos(sf::Vector2f(150.f, 650.f));
+	m_player->SetSize(sf::Vector2f(60.f, 60.f));
 
 	CreateBackGround();
 }
