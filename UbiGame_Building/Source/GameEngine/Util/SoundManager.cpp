@@ -168,7 +168,7 @@ void SoundManager::PlaySoundWithSoundInstance(SoundManager::SoundId const resour
     {
         return;
     }
-
+	
 	soundInstance->m_sound.stop();
 	soundInstance->m_sound.setBuffer(soundResource->m_soundBuffer);
 	soundInstance->m_sound.play();

@@ -13,14 +13,15 @@ namespace Game
 		virtual void Update() override;
 		virtual void OnAddToWorld() override;
 
-		void RequestSound(bool upSound);
+		void PlayMusicLoop();
+		void RequestSound();
 
 	private:		
-		float m_timeSinceLastUpSound;
-		float m_timeSinceLastDownSound;
+		float m_timeSinceLastPlaceBrick;
+		float m_timeSinceLastMusicLoop = 100.f;
 
-		GameEngine::SoundManager::SoundId m_upSoundId;
-		GameEngine::SoundManager::SoundId m_downSoundId;
+		GameEngine::SoundManager::SoundId m_musicSoundId;
+		GameEngine::SoundManager::SoundId m_brickSoundId;
 	};
 }
 

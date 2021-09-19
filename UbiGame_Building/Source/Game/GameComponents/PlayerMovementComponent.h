@@ -20,9 +20,8 @@ namespace Game
 		/// <summary>
 		///  used for animation
 		/// </summary>
-		float m_flyTimerDt;
-		float m_flyTimerMaxTime;
-
+		bool m_isBuilding;
+		
 		GameEngine::AnimationComponent* m_animComponent;
 		PlayerSoundComponent*			m_playerSoundComponent;
 	};

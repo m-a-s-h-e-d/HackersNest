@@ -20,8 +20,8 @@ void PlayerSoundComponent::OnAddToWorld()
 {
 	if (GameEngine::SoundComponent* const soundComponent = GetEntity()->GetComponent<GameEngine::SoundComponent>())
 	{
-		m_upSoundId   = soundComponent->LoadSoundFromFile("Resources/snd/thunder.wav");
-		m_downSoundId = soundComponent->LoadSoundFromFile("Resources/snd/glassbreak.wav");
+		m_musicSoundId = soundComponent->LoadSoundFromFile("Resources/snd/music_loop.wav");
+		m_brickSoundId   = soundComponent->LoadSoundFromFile("Resources/snd/place_brick.wav");
 	}
 }
 
@@ -30,19 +30,39 @@ void PlayerSoundComponent::Update()
 {
 	Component::Update();
 
-	m_timeSinceLastUpSound += GameEngine::GameEngineMain::GetTimeDelta();
-	m_timeSinceLastDownSound += GameEngine::GameEngineMain::GetTimeDelta();
+	m_timeSinceLastPlaceBrick += GameEngine::GameEngineMain::GetTimeDelta();
+	m_timeSinceLastMusicLoop += GameEngine::GameEngineMain::GetTimeDelta();
 }
 
 
-void PlayerSoundComponent::RequestSound(bool upSound)
+void PlayerSoundComponent::PlayMusicLoop()
 {
-	static bool enablePlayerSounds = false;	
+	GameEngine::SoundManager::SoundId soundId = m_musicSoundId;
+	float& lastPlayTimer = m_timeSinceLastMusicLoop;
+	
+	if (GameEngine::SoundComponent* const soundComponent = GetEntity()->GetComponent<GameEngine::SoundComponent>())
+	{
+		soundComponent->PlaySound(soundId);
+		lastPlayTimer = 0.0f;
+		
+		/*if (lastPlayTimer > 10.0f)
+		{
+			soundComponent->PlaySound(soundId);
+			lastPlayTimer = 0.0f;
+		}*/
+	}
+}
+
+
+
+void PlayerSoundComponent::RequestSound()
+{
+	static bool enablePlayerSounds = true;	
 	if (!enablePlayerSounds)
 		return;
 
-	GameEngine::SoundManager::SoundId soundId = upSound ? m_upSoundId : m_downSoundId;
-	float& lastPlayTimer =					    upSound ? m_timeSinceLastUpSound : m_timeSinceLastDownSound;
+	GameEngine::SoundManager::SoundId soundId = m_brickSoundId;
+	float& lastPlayTimer =					    m_timeSinceLastPlaceBrick;
 	
 
 	if (GameEngine::SoundComponent* const soundComponent = GetEntity()->GetComponent<GameEngine::SoundComponent>())
