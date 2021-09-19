@@ -15,7 +15,7 @@ ObstacleEntity::ObstacleEntity()
 	m_renderComponent->SetZLevel(2);
 	m_renderComponent->SetTileIndex(0, 0);
 
-	AddComponent<GameEngine::CollidableComponent>();
+	// AddComponent<GameEngine::CollidableComponent>();
 	AddComponent<GameEngine::ButtonComponent>();
 
 	SetEntityTag("Obstacle");
