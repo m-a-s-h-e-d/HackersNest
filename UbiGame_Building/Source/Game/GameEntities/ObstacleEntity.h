@@ -3,6 +3,7 @@
 #include "GameEngine/EntitySystem/Entity.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 #include "GameEngine/EntitySystem/Components/AnimationComponent.h"
+#include "GameEngine/EntitySystem/Components/InteractableComponent.h"
 
 namespace Game
 {
@@ -18,11 +19,14 @@ namespace Game
 
 		float getTimer() const;
 
+		virtual void Update() override;
+
 	protected:
-		float		m_timer;
+		int m_health;
+		float m_timeActive;
 		
 		GameEngine::SpriteRenderComponent* m_renderComponent;
-		GameEngine::AnimationComponent* m_animComponent;
+		GameEngine::InteractableComponent* m_interactableComponent;
 	};
 }
 

@@ -7,6 +7,7 @@ using namespace GameEngine;
 InteractionManager* InteractionManager::sm_instance = nullptr;
 
 InteractionManager::InteractionManager()
+	: m_pendingScore(0)
 {
 
 }

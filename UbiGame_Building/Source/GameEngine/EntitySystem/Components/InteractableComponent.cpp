@@ -44,7 +44,7 @@ void InteractableComponent::Update()
 	float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
 	m_timeSinceLastActive += dt;
 
-	if (m_timeSinceLastActive > 1.f)
+	if (m_timeSinceLastActive > 0.2f)
 	{
 		m_active = 0;
 		m_timeSinceLastActive = 0.f;

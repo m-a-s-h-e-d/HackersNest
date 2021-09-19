@@ -39,6 +39,7 @@ namespace Game
 		GameEngine::Entity* m_lift;
 		GameEngine::Entity* m_text;
 		GameEngine::Entity* m_backGround;
+		GameEngine::Entity* m_scoreboard;
 
 		float m_lastObstacleSpawnTimer;
 		bool  m_isGameOver;

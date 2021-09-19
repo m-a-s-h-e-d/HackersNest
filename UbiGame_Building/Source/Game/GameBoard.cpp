@@ -7,7 +7,7 @@
 #include "GameEngine/Util/CameraManager.h"
 #include "Game/GameEntities/PlayerEntity.h"
 #include "Game/GameEntities/ObstacleEntity.h"
-#include "Game/GameEntities/HoleEntity.h"
+#include "Game/GameEntities/ScoreEntity.h"
 #include "GameEntities/LiftEntity.h"
 
 using namespace Game;
@@ -33,6 +33,13 @@ GameBoard::GameBoard()
 
 	m_player->SetPos(sf::Vector2f(150.f, 650.f));
 	m_player->SetSize(sf::Vector2f(60.f, 60.f));
+
+	m_scoreboard = new ScoreEntity();
+
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_scoreboard);
+
+	m_scoreboard->SetPos(sf::Vector2f(12.f, 6.f));
+
 
 	CreateBackGround();
 }

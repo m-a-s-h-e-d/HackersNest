@@ -86,7 +86,7 @@ void SpriteRenderComponent::Update()
 	if (m_animComponent && m_animComponent->IsAnimPlaying())
 	{
 		SetTileIndex(m_animComponent->GetWantedTileIndex());
-	}		
+	}
 
 	UpdateTileRect();
 }
@@ -94,7 +94,7 @@ void SpriteRenderComponent::Update()
 
 void SpriteRenderComponent::SetTexture(eTexture::type texture)
 {
-	m_texture = texture;	
+	m_texture = texture;
 }
 
 

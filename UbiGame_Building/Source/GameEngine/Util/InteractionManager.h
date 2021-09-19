@@ -17,9 +17,15 @@ namespace GameEngine
 
 		std::vector<InteractableComponent*>& GetInteractables() { return m_collidables; }
 
+		int GetScore() { return m_pendingScore; }
+		void IncrementScore() { ++m_pendingScore; }
+		void ResetScoreCounter() { m_pendingScore = 0; }
+
 	private:
 		InteractionManager();
 		static InteractionManager* sm_instance;
+
+		int m_pendingScore;
 
 		std::vector<InteractableComponent*> m_collidables;
 	};
