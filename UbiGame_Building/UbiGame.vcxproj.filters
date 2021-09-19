@@ -112,6 +112,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\GameEntities\HoleEntity.cpp">
+    <ClCompile Include="Source\Game\GameEntities\LiftEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -209,5 +210,16 @@
     <ClInclude Include="Source\Game\GameEntities\HoleEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\GameEntities\LiftEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Assets\lift.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\Downloads\music_loop.mp3" />
   </ItemGroup>
 </Project>

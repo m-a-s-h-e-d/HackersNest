@@ -7,7 +7,7 @@ ConfigurationManager* ConfigurationManager::sm_instance = nullptr;
 ConfigurationManager::ConfigurationManager()
 	: m_windowSize(nullptr)
 {
-	m_windowSize = new sf::Vector2f(500, 500);
+	m_windowSize = new sf::Vector2f(500, 750);
 }
 
 ConfigurationManager::~ConfigurationManager()

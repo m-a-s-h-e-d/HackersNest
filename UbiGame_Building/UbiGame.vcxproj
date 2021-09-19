@@ -186,6 +186,7 @@ XCOPY "$(SolutionDir)..\SFML-2.5.0\bin" "$(TargetDir)" /S /Y /I</Command>
     <ClCompile Include="Source\GameEngine\Util\CollisionManager.cpp" />
     <ClCompile Include="Source\GameEngine\Util\SoundManager.cpp" />
     <ClCompile Include="Source\Game\GameEntities\HoleEntity.cpp" />
+    <ClCompile Include="Source\Game\GameEntities\LiftEntity.cpp" />
     <ClCompile Include="Source\Game\GameEntities\ObstacleEntity.cpp" />
     <ClCompile Include="Source\Game\GameComponents\PlayerMovementComponent.cpp" />
     <ClCompile Include="Source\Game\GameEntities\PlayerEntity.cpp" />
@@ -220,6 +221,7 @@ XCOPY "$(SolutionDir)..\SFML-2.5.0\bin" "$(TargetDir)" /S /Y /I</Command>
     <ClInclude Include="Source\GameEngine\Util\CollisionManager.h" />
     <ClInclude Include="Source\GameEngine\Util\SoundManager.h" />
     <ClInclude Include="Source\Game\GameEntities\HoleEntity.h" />
+    <ClInclude Include="Source\Game\GameEntities\LiftEntity.h" />
     <ClInclude Include="Source\Game\GameEntities\ObstacleEntity.h" />
     <ClInclude Include="Source\Game\GameComponents\PlayerMovementComponent.h" />
     <ClInclude Include="Source\Game\GameEntities\PlayerEntity.h" />
@@ -230,6 +232,12 @@ XCOPY "$(SolutionDir)..\SFML-2.5.0\bin" "$(TargetDir)" /S /Y /I</Command>
     <ClInclude Include="Source\GameEngine\GameEngineMain.h" />
     <ClInclude Include="Source\GameEngine\Util\TextureManager.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\SpriteRenderComponent.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Assets\lift.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\Downloads\music_loop.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

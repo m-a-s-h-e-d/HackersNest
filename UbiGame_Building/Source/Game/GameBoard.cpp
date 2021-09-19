@@ -8,42 +8,33 @@
 #include "Game/GameEntities/PlayerEntity.h"
 #include "Game/GameEntities/ObstacleEntity.h"
 #include "Game/GameEntities/HoleEntity.h"
+#include "GameEntities/LiftEntity.h"
 
 using namespace Game;
 
 GameBoard::GameBoard()
 	: m_player(nullptr)
+	, m_lift(nullptr)
+	, m_text(nullptr)
 	, m_backGround(nullptr)
 	, m_lastObstacleSpawnTimer(0.f)
 	, m_isGameOver(false)
 {
-	m_player = new PlayerEntity();
-	
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
-	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
-	m_player->SetSize(sf::Vector2f(40.f, 40.f));
-	
-	m_text = new GameEngine::Entity();
+	m_lift = new LiftEntity();
 
-    GameEngine::GameEngineMain::GetInstance()->AddEntity(m_text);
-	m_text->SetParent(m_player);
-    GameEngine::TextRenderComponent* textRenderComponent = m_text->AddComponent<GameEngine::TextRenderComponent>();
-    textRenderComponent->SetFont("arial.ttf");
-	textRenderComponent->SetString("Player!");
-	textRenderComponent->SetZLevel(3);
-	m_text->SetLocalPosOffset(sf::Vector2f(1.f, 1.f));
-	m_text->SetLocalRotOffset(90.f);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_lift);
+
+	m_lift->SetSize(sf::Vector2f(172.f, 1400.f));
+	m_lift->SetPos(sf::Vector2f(195.f, 0.f));
+	
+	m_player = new PlayerEntity();
+
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
+
+	m_player->SetPos(sf::Vector2f(150.f, 650.f));
+	m_player->SetSize(sf::Vector2f(60.f, 60.f));
 
 	CreateBackGround();
-	//Debug
-	for (int a = 1; a < 4; ++a)
-	{
-		auto holeEnt = new HoleEntity();
-		holeEnt->SetPos(sf::Vector2f(100.f * a, 100.f * a));
-		holeEnt->SetSize(sf::Vector2f(32.f, 32.f));
-
-		GameEngine::GameEngineMain::GetInstance()->AddEntity(holeEnt);
-	}
 }
 
 
@@ -58,80 +49,62 @@ void GameBoard::Update()
 	float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
 	if (!m_isGameOver)
 	{
-		//m_lastObstacleSpawnTimer -= dt;
-		//if (m_lastObstacleSpawnTimer <= 0.f)
-		//{
-		//	//SpawnNewRandomObstacles();
-		//	SpawnNewRandomTiledObstacles();
-		//}
+		m_lastObstacleSpawnTimer -= dt;
+		if (m_lastObstacleSpawnTimer <= 0.f)
+		{
+			SpawnNewRandomObstacles();
+		}
 
-		UpdateObstacles(dt);
+		UpdateCheckGameOver();
 		UpdateBackGround();
 		UpdatePlayerDying();
-	}		
-}
-
-
-void GameBoard::UpdateObstacles(float dt)
-{
-	static float obstacleSpeed = 100.f;
-
-	std::vector<GameEngine::Entity*> obstacles = GameEngine::GameEngineMain::GetInstance()->GetEntitiesByTag("Obstacle");
-	
-	for (auto it = obstacles.begin(); it != obstacles.end(); ++it)
+	}
+	else
 	{
-		GameEngine::Entity* obstacle = (*it);
-		sf::Vector2f currPos = obstacle->GetPos();
-		currPos.x -= obstacleSpeed * dt;
-		obstacle->SetPos(currPos);
-		//If we are to remove ourselves
-		if (currPos.x < -50.f)
-		{
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
-		}
+		// Update game over screen and stuff.
+		// Will most likely need to destroy all other entities (no memory leak pls)
 	}
 }
 
 
-void GameBoard::UpdatePlayerDying()
-{	
-	bool noGameOver = GameEngine::CameraManager::IsFollowCameraEnabled();
+void GameBoard::UpdateCheckGameOver()
+{
+	const static int obstacle_max = 7;
 
-	if (noGameOver)
-		return;
-
-	static float xToPlayerDie = 0.f;
-	if (m_player->GetPos().x < xToPlayerDie)
+	if (std::vector<GameEngine::Entity*> obstacles = GameEngine::GameEngineMain::GetInstance()->GetEntitiesByTag("Obstacle"); obstacles.size() >= obstacle_max)
 	{
 		m_isGameOver = true;
 	}
 }
 
 
+void GameBoard::UpdatePlayerDying()
+{
+	// Player should not die
+}
+
 void GameBoard::SpawnNewRandomObstacles()
 {
-	static float minNextSpawnTime = 0.3f;
-	static float maxNextSpawnTime = 0.7f;
+	static float minNextSpawnTime = 3.0f;
+	static float maxNextSpawnTime = 5.0f;
 
-	static float minObstacleXPos = 50.f;
-	static float maxObstacleXPos = 450.f;
-	static float minObstacleYPos = 20.f;
-	static float maxObstacleYPos = 450.f;
-	
-	static float minObstacleHeight = 50.f;
-	static float maxObstacleHeight = 170.f;
-	static float minObstacleWidth = 20.f;
-	static float maxObstacleWidth = 40.f;
+	static float minObstacleXPos = 70.f;
+	static float maxObstacleXPos = 430.f;
+	static float minObstacleYPos = 50.f;
+	static float maxObstacleYPos = 700.f;
+
+	static float obstacleHeight = 96.f;
+	static float obstacleWidth = 128.f;
 
 	sf::Vector2f pos = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
-	sf::Vector2f size = sf::Vector2f(RandomFloatRange(minObstacleWidth, maxObstacleWidth), RandomFloatRange(minObstacleHeight, maxObstacleHeight));
+	sf::Vector2f size = sf::Vector2f(obstacleWidth, obstacleHeight);
 
 	SpawnNewObstacle(pos, size);
 
 	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
 }
 
-
+// We will not use this
 void GameBoard::SpawnNewRandomTiledObstacles()
 {
 	static int minObstacleCount = 2;
@@ -174,8 +147,8 @@ void GameBoard::CreateBackGround()
 	GameEngine::SpriteRenderComponent* render = bgEntity->AddComponent<GameEngine::SpriteRenderComponent>();
 	render->SetTexture(GameEngine::eTexture::BG);
 	render->SetZLevel(0);
-	bgEntity->SetPos(sf::Vector2f(250.f, 250.f));
-	bgEntity->SetSize(sf::Vector2f(500.f, 500.f));
+	bgEntity->SetPos(sf::Vector2f(250.f, 375.f));
+	bgEntity->SetSize(sf::Vector2f(500.f, 750.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 
 	m_backGround = bgEntity;
@@ -186,6 +159,11 @@ void GameBoard::UpdateBackGround()
 {
 	if (!m_backGround || !m_player)
 		return;
+
+	if (m_isGameOver)
+	{
+		// Update the background sprite to the game over screen on game over
+	}
 
 	if (!GameEngine::CameraManager::IsFollowCameraEnabled())
 		return;
