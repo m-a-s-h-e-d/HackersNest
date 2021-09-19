@@ -22,31 +22,21 @@ void AnimationManager::InitStaticGameAnimations()
 	m_animDefinitions.push_back
 	(
 		SAnimationDefinition(
-			EAnimationId::BirdIdle,
+			EAnimationId::PlayerIdle,
 			eTexture::Player,
 			sf::Vector2i(0, 0),
-			10,
+			1,
 			3)
 	);
 
 	m_animDefinitions.push_back
 	(
 		SAnimationDefinition(
-			EAnimationId::BirdFly,
+			EAnimationId::PlayerHammer,
 			eTexture::Player,
-			sf::Vector2i(0, 1),
-			10,
-			15)
-	);
-
-	m_animDefinitions.push_back
-	(
-		SAnimationDefinition(
-			EAnimationId::Smoke,
-			eTexture::Particles,
 			sf::Vector2i(0, 0),
-			10,
-			15)
+			2,
+			6)
 	);
 }
 

@@ -19,19 +19,20 @@ GameBoard::GameBoard()
 	m_player = new PlayerEntity();
 	
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
-	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
-	m_player->SetSize(sf::Vector2f(40.f, 40.f));
+	m_player->SetPos(sf::Vector2f(150.f, 700.f));	
+	m_player->SetSize(sf::Vector2f(64.f, 64.f));
 	
 	m_text = new GameEngine::Entity();
 
-    GameEngine::GameEngineMain::GetInstance()->AddEntity(m_text);
-	m_text->SetParent(m_player);
-    GameEngine::TextRenderComponent* textRenderComponent = m_text->AddComponent<GameEngine::TextRenderComponent>();
-    textRenderComponent->SetFont("arial.ttf");
-	textRenderComponent->SetString("Player!");
-	textRenderComponent->SetZLevel(3);
-	m_text->SetLocalPosOffset(sf::Vector2f(1.f, 1.f));
-	m_text->SetLocalRotOffset(90.f);
+    /**
+	    GameEngine::GameEngineMain::GetInstance()->AddEntity(m_text);
+		m_text->SetParent(m_player);
+	    GameEngine::TextRenderComponent* textRenderComponent = m_text->AddComponent<GameEngine::TextRenderComponent>();
+	    textRenderComponent->SetFont("arial.ttf");
+		textRenderComponent->SetString("Player");
+		textRenderComponent->SetZLevel(3);
+		m_text->SetLocalPosOffset(sf::Vector2f(1.f, 1.f));
+	*/
 
 	CreateBackGround();
 }

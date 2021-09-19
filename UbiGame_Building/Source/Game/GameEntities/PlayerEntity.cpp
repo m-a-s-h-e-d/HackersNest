@@ -18,18 +18,13 @@ PlayerEntity::PlayerEntity()
 	//Render 
 	m_renderComponent = AddComponent<GameEngine::SpriteRenderComponent>();	
 	m_renderComponent->SetTexture(GameEngine::eTexture::Player);
-	m_renderComponent->SetZLevel(2);
+	m_renderComponent->SetZLevel(3);
 
 	//Animation
 	m_animComponent = AddComponent<GameEngine::AnimationComponent>();
 		
 	//Collisions
 	AddComponent<GameEngine::CollidablePhysicsComponent>();
-	
-	//Particles
-	GameEngine::ParticleEmitterComponent* emitterComponent = AddComponent<GameEngine::ParticleEmitterComponent>();
-	GameEngine::SParticleDefinition particleDef = GameEngine::SParticleDefinition(GameEngine::eTexture::Particles, 1, sf::Vector2f(32.f, 32.f), GameEngine::EAnimationId::Smoke, 1.f);
-	emitterComponent->SetParticleDefinition(particleDef);
 
 
 	//Sound
@@ -55,7 +50,7 @@ void PlayerEntity::OnAddToWorld()
 
 	if (m_animComponent)
 	{
-		m_animComponent->PlayAnim(GameEngine::EAnimationId::BirdIdle);
+		m_animComponent->PlayAnim(GameEngine::EAnimationId::PlayerIdle);
 	}
 
 	SetEntityTag("Player");

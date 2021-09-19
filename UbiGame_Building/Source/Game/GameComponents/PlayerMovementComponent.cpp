@@ -14,12 +14,8 @@
 using namespace Game;
 
 PlayerMovementComponent::PlayerMovementComponent()
-	: m_flyTimerDt(0.f)
-	, m_flyTimerMaxTime(2.f)
-	, m_animComponent(nullptr)
-	, m_playerSoundComponent(nullptr)
 {
-
+	m_isBuilding = false;
 }
 
 
@@ -45,7 +41,7 @@ void PlayerMovementComponent::Update()
 	}
 
 	float dt = GameEngine::GameEngineMain::GetTimeDelta();
-	static float playerVel = 150.f; //Pixels/s
+	static float playerVel = 200.f; //Pixels/s
 
 	sf::Vector2f wantedVel = sf::Vector2f(0.f, 0.f);
 
@@ -64,6 +60,14 @@ void PlayerMovementComponent::Update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		wantedVel.y += playerVel * dt;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		m_isBuilding = true;
+	}
+	else
+	{
+		m_isBuilding = false;
 	}
 
 	auto cfgMgr = GameEngine::ConfigurationManager::GetInstance();
@@ -91,22 +95,24 @@ void PlayerMovementComponent::Update()
 
 	if (m_animComponent)
 	{
-		if (m_flyTimerDt > 0.f)
+		if (m_isBuilding)
 		{
-			if (m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::BirdFly)
+			if (m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::PlayerHammer)
 			{
-				m_animComponent->PlayAnim(GameEngine::EAnimationId::BirdFly);
+				m_animComponent->PlayAnim(GameEngine::EAnimationId::PlayerHammer);
 			}
 		}
-		else if(m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::BirdIdle)
+		else if(m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::PlayerIdle)
 		{
-			m_animComponent->PlayAnim(GameEngine::EAnimationId::BirdIdle);
+			m_animComponent->PlayAnim(GameEngine::EAnimationId::PlayerIdle);
 		}
 	}
 
 	
+
+	
 	static float rotationVel = 50.f; //Deg/s
-	static float maxRotation = 20.f; //Deg
+	static float maxRotation = 0.f; //Deg
 	
 	float currentRotation = GetEntity()->GetRot();
 	float wantedRot = 0.f;

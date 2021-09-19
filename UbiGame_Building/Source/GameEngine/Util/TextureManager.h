@@ -14,7 +14,6 @@ namespace GameEngine
 			Player = 0,
 			Tileset,
 			BG,
-			Particles,
 			Count,
 		};
 	}	
@@ -26,7 +25,6 @@ namespace GameEngine
 		case eTexture::Player:    return "player.png";
 		case eTexture::Tileset:   return "tileset.png";
 		case eTexture::BG:		  return "bg.png";
-		case eTexture::Particles: return "particles.png";
 		default:       return "UnknownTexType";
 		}
 	}
