@@ -9,6 +9,10 @@ UbiGame_Blank/tmp
 UbiGame_FlappBird/bin
 UbiGame_FlappBird/tmp
 
+**/*/bin
+**/*/tmp
+
 #Visual Studio Meta data
 UbiGame_Blank/.vs
 UbiGame_FlappBird/.vs
+**/*/.vs

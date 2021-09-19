@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\ButtonComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\InteractableComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\InteractorComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\StateComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\TextRenderComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\Util\ButtonManager.cpp" />
+    <ClCompile Include="Source\GameEngine\Util\ConfigurationManager.cpp" />
+    <ClCompile Include="Source\GameEngine\Util\InteractionManager.cpp" />
+    <ClCompile Include="Source\Game\GameComponents\PlayerCameraComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\Util\CameraManager.cpp" />
+    <ClCompile Include="Source\Game\GameComponents\PlayerSoundComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\ParticleComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\ParticleEmitterComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\SoundComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\Util\AnimationManager.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\AnimationComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\CollidablePhysicsComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\CollidableComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\Util\CollisionManager.cpp" />
+    <ClCompile Include="Source\GameEngine\Util\SoundManager.cpp" />
+    <ClCompile Include="Source\Game\GameEntities\LiftEntity.cpp" />
+    <ClCompile Include="Source\Game\GameEntities\ObstacleEntity.cpp" />
+    <ClCompile Include="Source\Game\GameComponents\PlayerMovementComponent.cpp" />
+    <ClCompile Include="Source\Game\GameEntities\PlayerEntity.cpp" />
+    <ClCompile Include="Source\Game\GameBoard.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\RenderComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Component.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Entity.cpp" />
+    <ClCompile Include="Source\GameEngine\GameEngineMain.cpp" />
+    <ClCompile Include="Source\GameEngine\Util\TextureManager.cpp" />
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\SpriteRenderComponent.cpp" />
+    <ClCompile Include="Source\Game\GameEntities\ScoreEntity.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\ButtonComponent.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\InteractableComponent.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\InteractorComponent.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\StateComponent.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\TextRenderComponent.h" />
+    <ClInclude Include="Source\GameEngine\Util\ButtonManager.h" />
+    <ClInclude Include="Source\GameEngine\Util\ConfigurationManager.h" />
+    <ClInclude Include="Source\GameEngine\Util\InteractionManager.h" />
+    <ClInclude Include="Source\Game\GameComponents\PlayerCameraComponent.h" />
+    <ClInclude Include="Source\GameEngine\Util\CameraManager.h" />
+    <ClInclude Include="Source\Game\GameComponents\PlayerSoundComponent.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\ParticleComponent.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\ParticleEmitterComponent.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\SoundComponent.h" />
+    <ClInclude Include="Source\GameEngine\Util\AnimationManager.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\AnimationComponent.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\CollidablePhysicsComponent.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\CollidableComponent.h" />
+    <ClInclude Include="Source\GameEngine\Util\CollisionManager.h" />
+    <ClInclude Include="Source\GameEngine\Util\SoundManager.h" />
+    <ClInclude Include="Source\Game\GameEntities\LiftEntity.h" />
+    <ClInclude Include="Source\Game\GameEntities\ObstacleEntity.h" />
+    <ClInclude Include="Source\Game\GameComponents\PlayerMovementComponent.h" />
+    <ClInclude Include="Source\Game\GameEntities\PlayerEntity.h" />
+    <ClInclude Include="Source\Game\GameBoard.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\RenderComponent.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Component.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Entity.h" />
+    <ClInclude Include="Source\GameEngine\GameEngineMain.h" />
+    <ClInclude Include="Source\GameEngine\Util\TextureManager.h" />
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\SpriteRenderComponent.h" />
+    <ClInclude Include="Source\Game\GameEntities\ScoreEntity.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\Downloads\music_loop.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Assets\lift.png" />
+  </ItemGroup>
+</Project>
