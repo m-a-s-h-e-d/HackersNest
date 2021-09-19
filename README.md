@@ -19,3 +19,6 @@ You must create a game that includes the theme of **BUILDING**.
 - [Build and Run](https://github.com/UbisoftToronto/HackersNest/wiki/Build-and-Run)
 - [Code Overview](https://github.com/UbisoftToronto/HackersNest/wiki/GameEngine-Overview)
 - [Step By Step Tutorial](https://github.com/UbisoftToronto/HackersNest/wiki/Step-By-Step-Tutorial)
+
+## Attributions
+Several sound effects and music have been obtained through https://www.zapsplat.com
