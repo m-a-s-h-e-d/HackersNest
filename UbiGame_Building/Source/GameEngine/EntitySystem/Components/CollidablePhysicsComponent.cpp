@@ -22,12 +22,16 @@ CollidablePhysicsComponent::~CollidablePhysicsComponent()
 void CollidablePhysicsComponent::OnAddToWorld()
 {
 	CollidableComponent::OnAddToWorld();
+
+	CollisionManager::GetInstance()->RegisterCollidable(this);
 }
 
 
 void CollidablePhysicsComponent::OnRemoveFromWorld()
 {
 	CollidableComponent::OnRemoveFromWorld();
+
+	CollisionManager::GetInstance()->UnRegisterCollidable(this);
 }
 
 

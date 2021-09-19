@@ -6,6 +6,7 @@
 #include "GameEngine/EntitySystem/Components/CollidablePhysicsComponent.h"
 #include "GameEngine/EntitySystem/Components/ParticleEmitterComponent.h"
 #include "GameEngine/EntitySystem/Components/SoundComponent.h"
+#include "GameEngine/EntitySystem/Components/InteractorComponent.h"
 #include "GameEngine/Util/AnimationManager.h"
 
 using namespace Game;
@@ -40,6 +41,9 @@ PlayerEntity::PlayerEntity()
 
 	//Camera control
 	AddComponent<PlayerCameraComponent>();
+
+	// Interact with environment
+	AddComponent<GameEngine::InteractorComponent>();
 }
 
  

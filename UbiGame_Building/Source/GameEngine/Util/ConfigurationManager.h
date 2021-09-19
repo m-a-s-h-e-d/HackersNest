@@ -2,7 +2,7 @@
 
 #include <SFML/System/Vector2.hpp>
 
-namespace GameEngine 
+namespace GameEngine
 {
 
 	class ConfigurationManager
@@ -21,4 +21,5 @@ namespace GameEngine
 
 		sf::Vector2f* m_windowSize;
 	};
+
 }

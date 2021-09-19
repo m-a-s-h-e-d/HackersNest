@@ -7,6 +7,7 @@
 #include "GameEngine/Util/CameraManager.h"
 #include "Game/GameEntities/PlayerEntity.h"
 #include "Game/GameEntities/ObstacleEntity.h"
+#include "Game/GameEntities/HoleEntity.h"
 
 using namespace Game;
 
@@ -35,9 +36,13 @@ GameBoard::GameBoard()
 
 	CreateBackGround();
 	//Debug
-	for (int a = 0; a < 3; ++a)
+	for (int a = 1; a < 4; ++a)
 	{
-		//SpawnNewRandomObstacles();
+		auto holeEnt = new HoleEntity();
+		holeEnt->SetPos(sf::Vector2f(100.f * a, 100.f * a));
+		holeEnt->SetSize(sf::Vector2f(32.f, 32.f));
+
+		GameEngine::GameEngineMain::GetInstance()->AddEntity(holeEnt);
 	}
 }
 
@@ -53,12 +58,12 @@ void GameBoard::Update()
 	float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
 	if (!m_isGameOver)
 	{
-		m_lastObstacleSpawnTimer -= dt;
-		if (m_lastObstacleSpawnTimer <= 0.f)
-		{
-			//SpawnNewRandomObstacles();
-			SpawnNewRandomTiledObstacles();
-		}
+		//m_lastObstacleSpawnTimer -= dt;
+		//if (m_lastObstacleSpawnTimer <= 0.f)
+		//{
+		//	//SpawnNewRandomObstacles();
+		//	SpawnNewRandomTiledObstacles();
+		//}
 
 		UpdateObstacles(dt);
 		UpdateBackGround();
