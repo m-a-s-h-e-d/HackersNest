@@ -1,24 +1,40 @@
-# HackersNest
+# Repair Rush
 
-[![Build Targets](https://github.com/UbisoftToronto/HackersNest/workflows/Build%20Targets/badge.svg)](https://github.com/UbisoftToronto/HackersNest/actions)
+Submitted as part of the Ubisoft API Toronto Hackathon challenges
 
-Base framework for the Ubisoft Toronto Hackathon challenges
+## Inspiration
 
-# HackTheNorth Challenge
+We couldn't think of an idea at first, but then we decided to interpret the theme of "Building" as a noun and came up with this niche game idea.
 
-Demonstrate your abilities as a game developer and take us on a journey! Our mentors will help you succeed by providing hands on demonstrations, documentation and consultations along the way.
+## What it does
 
-**Please attend our workshop (5:30PM-6:00PM on Friday, September 17th 2021)** and visit our Hopin booth and Discord channel to meet our mentors Radoslaw Malicki, Alexander 'Mordred' Andonov, and Xavier Sadoulet.
+You play as a repairman using keyboard inputs to move around the screen and repair holes on the side of a building. If the holes overwhelm you, the building falls apart and you get a game over.
 
-## Theme
+## How we built it
 
-You must create a game that includes the theme of **BUILDING**.
+We used the Ubisoft NEST game engine API and created the game in C++. Sprites of the entities in game were created with sprite sheets in Aseprite for static and animated objects.
 
-## Documentation
+## Challenges we ran into
 
-- [Build and Run](https://github.com/UbisoftToronto/HackersNest/wiki/Build-and-Run)
-- [Code Overview](https://github.com/UbisoftToronto/HackersNest/wiki/GameEngine-Overview)
-- [Step By Step Tutorial](https://github.com/UbisoftToronto/HackersNest/wiki/Step-By-Step-Tutorial)
+All of our team members were not very familiar with C++ and game engine tweaking. Learning the language and understanding the game engine. Coming up with the game logic was also a new experience for us. A few of our team members had little knowledge in development flow, but we overcame this challenge with peer programming and strong communication.
+
+## Accomplishments that we're proud of
+
+We are proud that we were able to come up with a silly idea and complete the MVP. If we had more time, we could implement some cooler features, such as falling debris and multiple stages.
+
+## What's next for Repair Rush
+
+Since we were only able to create a single stage, we would like to have a difficulty increasing game with falling obstacles that bring some more difficulty in the game.
+
+## Try out the game here!
+
+https://github.com/m-a-s-h-e-d/HackersNest/releases/tag/v1.0.0
+
+## Built with
+- C++
+- Ubisoft Hackers NEST Game Engine API
+- Adobe Suite (Photoshop, Illustrator, Premiere Pro)
+- Aseprite
 
 ## Attributions
 Several sound effects and music have been obtained through https://www.zapsplat.com
